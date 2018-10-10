@@ -342,28 +342,8 @@ public class Server : MonoBehaviour
     //Note: The A always return 11, not 1
     public int getLogicalCardValue(string logicalCard)
     {
-        int i = 0;
-        while (logicalCard[i].ToString() != " ")
-        {
-            i++;
-        }
-        i = i + 3;
-        string stringNumber = "";
-        while (logicalCard[i].ToString() != " ")
-        {
-            stringNumber = stringNumber + logicalCard[i].ToString();
-            i++;
-        }
-        int number = int.Parse(stringNumber);
-        if (number > 10)
-        {
-            number = 10;
-        }
-        if (number == 1)
-        {
-            number = 11;
-        }
-        return number;
+        Card tmpLogicalCard = new Card(logicalCard);
+        return tmpLogicalCard.Value;
     }
 
     //Transmit a message with "data" to every client except "client"

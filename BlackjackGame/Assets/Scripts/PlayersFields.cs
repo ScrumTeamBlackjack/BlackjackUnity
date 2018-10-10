@@ -22,7 +22,7 @@ public static class PlayersFields
     private static void InitializeAttr()
     {
         PlayerNames = new List<Text>();
-        PlayersCoins = new List<Text>(); ;
+        PlayersCoins = new List<Text>();
         PlayersBets = new List<Text>();
         PlayersHandCount = new List<Text>();
         PlayersBlackjackBet = new List<Text>();
@@ -42,12 +42,13 @@ public static class PlayersFields
         int i = 0;
         while (i < 3)
         {
-            PlayerNames[i] = GameObject.Find("Player" + (i + 1)).GetComponent<Text>();
-            PlayersCoins[i] = GameObject.Find("Player" + (i + 1) + "Coins").GetComponent<Text>();
-            PlayersBets[i] = GameObject.Find("Player" + (i + 1) + "Bet").GetComponent<Text>();
-            PlayersHandCount[i] = GameObject.Find("Player" + (i + 1) + "Hand").GetComponent<Text>();
-            PlayersBlackjackBet[i] = GameObject.Find("Player" + (i + 1) + "Blackjack").GetComponent<Text>();
-            PlayersCardsPositions[i] = GameObject.Find("cardFieldPlayer" + (i + 1));
+            PlayerNames.Add(GameObject.Find(string.Concat("Player", (i + 1))).GetComponent<Text>());
+            PlayersCoins.Add(GameObject.Find(string.Concat("Player", (i + 1), "Coins")).GetComponent<Text>());
+            PlayersBets.Add(GameObject.Find(string.Concat("Player", (i + 1), "Bet")).GetComponent<Text>());
+            PlayersHandCount.Add(GameObject.Find(string.Concat("Player", (i + 1), "Hand")).GetComponent<Text>());
+            PlayersBlackjackBet.Add(GameObject.Find(string.Concat("Player", (i + 1), "Blackjack")).GetComponent<Text>());
+            PlayersCardsPositions.Add(GameObject.Find(string.Concat("cardFieldPlayer", (i + 1))));
+            i++;
         }
 
         //find the cards positions for the dealer

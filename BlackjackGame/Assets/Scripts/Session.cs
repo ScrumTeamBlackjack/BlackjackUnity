@@ -24,7 +24,7 @@ public class Session : MonoBehaviour {
     // Use this for initialization
     void Start() {
         //Sets every button event on click
-        this.logoutButton.GetComponent<Button>().onClick.AddListener(Logout);
+        this.logoutButton.GetComponent<Button>().onClick.AddListener(ReturnToMainMenu);
         this.playButton.GetComponent<Button>().onClick.AddListener(LoadGame);
     }
 
@@ -53,7 +53,7 @@ public class Session : MonoBehaviour {
     }
 
     //When the user wants to logout, cleans every space and returns to the main menu background
-    private void Logout()
+    private void ReturnToMainMenu()
     {
         this.errorText.text = "";
         this.coinsToGame.GetComponent<InputField>().text = "";

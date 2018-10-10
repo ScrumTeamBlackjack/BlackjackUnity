@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44883072, g: 0.49889588, b: 0.57569677, a: 1}
+  m_IndirectSpecularColor: {r: 0.44883066, g: 0.4988957, b: 0.5756969, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4972,7 +4972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.328}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 193, y: -2}
+  m_AnchoredPosition: {x: 180, y: -2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031039156
@@ -5559,7 +5559,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: putAPlayerInTheTable
+        m_MethodName: PutAPlayerInTheTable
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5571,12 +5571,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: PutPlayerEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  startGame:
+  activateInitialBet:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1740036834}
-        m_MethodName: activateInitialBet
-        m_Mode: 1
+      - m_Target: {fileID: 1740036837}
+        m_MethodName: ToggleWindows
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5585,13 +5585,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: ActivateInitialBetEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   putRemoteBet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: putRemoteInitialBet
+        m_MethodName: PutRemoteInitialBet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5607,7 +5607,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: putInitialCards
+        m_MethodName: PutInitialCards
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5617,13 +5617,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: PutInitialCards, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: PutInitialCardsEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   turnChange:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: turnChange
+        m_MethodName: TurnChange
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5633,12 +5633,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: TurnChange, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: TurnChangeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   recieveCard:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: recieveExtraCard
+        m_MethodName: PutExtraCard
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5648,12 +5649,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: RecieveCard, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  doubleBetEvent:
+    m_TypeName: RecieveCardEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  doubleBet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: doubleBet
+        m_MethodName: DoubleBet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5663,12 +5665,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: DoubleBet, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  casinoPlayEvent:
+    m_TypeName: DoubleBetEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  casinoPlay:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: casinoPlay
+        m_MethodName: CasinoPlay
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5678,12 +5681,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: CasinoPlay, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: CasinoPlayEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   putRemoteBlackjackBet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1740036834}
-        m_MethodName: recieveRemoteBlackjackBet
+        m_MethodName: RecieveRemoteBlackjackBet
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8920,9 +8924,105 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: InitialBetReady, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: InitialBetReadyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  passTurnEvent:
+  blackjackBetReady:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1080009976}
+        m_MethodName: blackjackBetReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: BlackjckBetReadyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  putRemoteCoins:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036838}
+        m_MethodName: DealCoins
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: PutRemoteCoinsEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  activateButtons:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036835}
+        m_MethodName: activateButtons
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: ActivateButtonsEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  deactivateSecondaryButtons:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036835}
+        m_MethodName: DeactivateSecondaryButtons
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  deactivateButtons:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036835}
+        m_MethodName: DeactivateButtons
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  blackjackBetRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036837}
+        m_MethodName: BlackjackBetRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  passTurn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1080009976}
@@ -8938,6 +9038,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1740036835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1740036833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7107b625d911614cb51cd21021cda91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   askForACard:
     m_PersistentCalls:
       m_Calls:
@@ -8954,11 +9065,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  doubleBetEvent:
+  passTurn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1080009976}
-        m_MethodName: doubleBet
+        m_MethodName: passTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8970,11 +9081,27 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  blackjackBetReady:
+  doubleBet:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1080009976}
-        m_MethodName: blackjackBetReady
+        m_MethodName: doubleBetAndAskForACard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  activateBlackjackBetWindow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036837}
+        m_MethodName: ToggleWindows
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8984,9 +9111,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: BlackjckBetReady, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &1740036835
+    m_TypeName: ActivateBlackjackBetWindowEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!4 &1740036836 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400008, guid: 89793ce4416a95a4e82d3a67c9059619,
+    type: 3}
+  m_PrefabInternal: {fileID: 40665359}
+--- !u!114 &1740036837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8994,18 +9126,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 1740036833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7107b625d911614cb51cd21021cda91, type: 3}
+  m_Script: {fileID: 11500000, guid: 675001388b3c0644e85ce0988a46047b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  askForACardButton: {fileID: 0}
-  bet21Button: {fileID: 0}
-  doubleBetButton: {fileID: 0}
-  passButton: {fileID: 0}
---- !u!4 &1740036836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400008, guid: 89793ce4416a95a4e82d3a67c9059619,
-    type: 3}
-  m_PrefabInternal: {fileID: 40665359}
+  saveInitialBet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036834}
+        m_MethodName: SaveLocalInitialBet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: SaveInitialBetEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  putLocalCoins:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036838}
+        m_MethodName: DealCoins
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: PutLocalCoinsEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  checkBlackjackBet:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1740036834}
+        m_MethodName: CheckLocalBlackjackBet
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: CheckBlackjackBetEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &1740036838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1740036833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6a8ea5b8f40a248ab55ce13a427706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsPositions: []
+  blackjackCoinsPositions: []
 --- !u!1 &1758411253
 GameObject:
   m_ObjectHideFlags: 0

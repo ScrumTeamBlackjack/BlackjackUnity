@@ -13,6 +13,12 @@ public class PutPlayerEvent : UnityEvent<int, string>
 {
 }
 
+//This evet activates the initial bet window
+[System.Serializable]
+public class ActivateInitialBetEvent : UnityEvent<string>
+{
+}
+
 //This event triggers a function in the class Game, to put one initial bet from another player
 [System.Serializable]
 public class PutRemoteBetEvent : UnityEvent<int, string>
@@ -21,31 +27,31 @@ public class PutRemoteBetEvent : UnityEvent<int, string>
 
 //This event triggers a function in the class Game, every initial card for every player
 [System.Serializable]
-public class PutInitialCards : UnityEvent<List<string>>
+public class PutInitialCardsEvent : UnityEvent<List<string>>
 {
 }
 
 //This event triggers a function in the class Game, that changes the current turn
 [System.Serializable]
-public class TurnChange : UnityEvent<string, int>
+public class TurnChangeEvent : UnityEvent<string, int>
 {
 }
 
 //This event triggers a function in the class Game, to receive one card to one player
 [System.Serializable]
-public class RecieveCard : UnityEvent<int, string, bool>
+public class RecieveCardEvent : UnityEvent<int, string, bool>
 {
 }
 
 //This event triggers a function in the class Game, to receive one card to one player and doubles his bet
 [System.Serializable]
-public class DoubleBet : UnityEvent<int, string>
+public class DoubleBetEvent : UnityEvent<int, string>
 {
 }
 
 //This event triggers a function in the class Game, to put the casino play in the table
 [System.Serializable]
-public class CasinoPlay : UnityEvent<List<string>>
+public class CasinoPlayEvent : UnityEvent<List<string>>
 {
 }
 
@@ -67,13 +73,13 @@ public class Client : MonoBehaviour
 
     //public fields
     public PutPlayerEvent putPlayer;
-    public UnityEvent startGame;
+    public ActivateInitialBetEvent activateInitialBet;
     public PutRemoteBetEvent putRemoteBet;
-    public PutInitialCards putInitialCards;
-    public TurnChange turnChange;
-    public RecieveCard recieveCard;
-    public DoubleBet doubleBetEvent;
-    public CasinoPlay casinoPlayEvent;
+    public PutInitialCardsEvent putInitialCards;
+    public TurnChangeEvent turnChange;
+    public RecieveCardEvent recieveCard;
+    public DoubleBetEvent doubleBet;
+    public CasinoPlayEvent casinoPlay;
     public PutRemoteBlackjackBetEvent putRemoteBlackjackBet;
 
     public void connectToServer()
@@ -107,7 +113,7 @@ public class Client : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        PlayersFields.FindFields();
     }
 
     // Update is called once per frame
@@ -154,7 +160,7 @@ public class Client : MonoBehaviour
         //The server advise the start of the game
         else if (typeOfData == "2")
         {
-            this.startGame.Invoke();
+            this.activateInitialBet.Invoke("initialBet");
         }
 
         //A remote player puts his initial bet value
@@ -191,7 +197,7 @@ public class Client : MonoBehaviour
         {
             string player = reader.ReadLine();
             string card = reader.ReadLine();
-            this.doubleBetEvent.Invoke(int.Parse(player), card);
+            this.doubleBet.Invoke(int.Parse(player), card);
         }
 
         //Recieves a remote client blakjack bet
@@ -210,7 +216,7 @@ public class Client : MonoBehaviour
             //When the casino didn´t ask for extra cards
             if (extraCards == "0")
             {
-                this.casinoPlayEvent.Invoke(null);
+                this.casinoPlay.Invoke(null);
             }
 
             //When the casino did ask for extra cards
@@ -223,7 +229,7 @@ public class Client : MonoBehaviour
                     string card = this.reader.ReadLine();
                     casinoExtraCards.Add(card);
                 }
-                this.casinoPlayEvent.Invoke(casinoExtraCards);
+                this.casinoPlay.Invoke(casinoExtraCards);
             }
         }
     }
@@ -286,7 +292,7 @@ public class Client : MonoBehaviour
     }
 
     //Asks the server for a new card and to double the bet
-    public void doubleBet()
+    public void doubleBetAndAskForACard()
     {
         List<string> data = new List<string>();
         data.Add("4");

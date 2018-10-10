@@ -55,15 +55,13 @@ class PlayerInGame
             {
                 //seach if in the current cards exist an Ace to substract it value to the hand count
                 bool tmpFlag = true;
-                foreach (Card tmpSearchedCard in PlayerCards)
+                for (int i = 0; i < PlayerCards.Count; i++)
                 {
                     //takes the actual card that it value is 11 and change it to 1, then substract 10 to handCount
-                    if (tmpSearchedCard.Value == 11 && tmpFlag)
+                    if (PlayerCards[i].Value == 11 && tmpFlag)
                     {
-                        //find the index of the tmpCard in the player cards list
-                        int index = PlayerCards.BinarySearch(tmpSearchedCard);
                         //change the value of this card in the index that the binary search returned 
-                        PlayerCards[index].ChangeValue(1);
+                        PlayerCards[i].ChangeValue(1);
                         //we subtract 10 from the current value to compensate the new value of Ace
                         handCount -= 10;
                         tmpFlag = false;

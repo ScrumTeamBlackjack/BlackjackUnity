@@ -3,10 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+//Event that saves the local player initial bet
+[System.Serializable]
+public class SaveInitialBetEvent : UnityEvent<int>
+{
+}
+
+//Event that puts the coins of the initial bet in the table
+[System.Serializable]
+public class PutLocalCoinsEvent : UnityEvent<int, int, string>
+{
+}
+
+//Event that checks that the blackjack bet is right
+[System.Serializable]
+public class CheckBlackjackBetEvent : UnityEvent<int>
+{
+}
 
 public class ManageWindows : MonoBehaviour
 {
+    //public fields
+    public SaveInitialBetEvent saveInitialBet;
+    public PutLocalCoinsEvent putLocalCoins;
+    public CheckBlackjackBetEvent checkBlackjackBet;
+
+    //private fields
     private bool showInitialBetWindow;
     private bool showBlackjackBetWindow;
     private bool showAnotherRoundWindow;
@@ -54,7 +79,7 @@ public class ManageWindows : MonoBehaviour
    void DoInitialBetWindow(int windowID)
     {
         //create the labels and the texfield in the window
-        GUI.Label(new Rect(25, 20, 390, 60), "Please, insert your initial bet in the next field and press Start Button! to continue.");
+        GUI.Label(new Rect(25, 20, 390, 60), "Please, insert your initial bet in the next field and press Continue.");
         GUI.Label(new Rect(25, 65, 100, 30), "Initial Bet: ");
         playerInitialBet = GUI.TextField(new Rect(130, 65, 200, 25), playerInitialBet, 25);
 
@@ -70,8 +95,8 @@ public class ManageWindows : MonoBehaviour
                     PlayersFields.PlayersBets[Player.PlayerPosition].text = "Bet: " + playerInitialBet;
                     PlayersFields.PlayersCoins[Player.PlayerPosition].text = (playerCoins - initialBetValue).ToString();
                     showInitialBetWindow = false;
-                    DealCoins(Player.PlayerPosition, initialBetValue);
-                    this.betReady.Invoke(initialBetValue);
+                    this.putLocalCoins.Invoke(Player.PlayerPosition, initialBetValue, "initial");
+                    this.saveInitialBet.Invoke(initialBetValue);
                 }
             }
         }
@@ -80,28 +105,23 @@ public class ManageWindows : MonoBehaviour
     //Window that asks for the secondary bet (bet the house has blackjack)
     void DoBlackjackBetWindow(int windowID)
     {
-        GUI.Label(new Rect(25, 20, 390, 60), "Please, insert your secondary bet in the next field and press Start Button! to continue.");
+        GUI.Label(new Rect(25, 20, 390, 60), "Please, insert your secondary bet in the next field and press Continue.");
         GUI.Label(new Rect(25, 65, 100, 30), "Secondary Bet: ");
         playerBlackjackBet = GUI.TextField(new Rect(130, 65, 200, 25), playerBlackjackBet, 25);
-        if (GUI.Button(new Rect(290, 170, 100, 20), "Start Button!"))
+        if (GUI.Button(new Rect(290, 170, 100, 20), "Continue"))
         {
             //validate if the input is a number
             if (int.TryParse(playerBlackjackBet, out blackjackBet))
             {
-                int playerCoins = int.Parse(playersCoins[this.currentPlayerPosition].text);
-
-                if (blackjackBet <= (initialBetValue / 2) && blackjackBet <= int.Parse(this.playersCoins[this.currentPlayerPosition].text))
-                {
-                    playersBlackjackBet[this.currentPlayerPosition].text = "BJ Bet: " + blackjackBet;
-                    playersCoins[this.currentPlayerPosition].text = (playerCoins - blackjackBet).ToString();
-                    hideBlackjackBetWindow = true;
-                    DealCoins(this.currentPlayerPosition + 3, blackjackBet);
-                    this.blackjackBetReady.Invoke(blackjackBet);
-                    deactivateButtons();
-                    activateButtons();
-                }
+                this.checkBlackjackBet.Invoke(blackjackBet);
             }
         }
+    }
+
+    public void BlackjackBetRight()
+    {
+        showBlackjackBetWindow = false;
+        this.putLocalCoins.Invoke(Player.PlayerPosition, blackjackBet, "blackjack");
     }
 
     void DoAnotherRoundWindow(int windowID)
@@ -109,11 +129,11 @@ public class ManageWindows : MonoBehaviour
         new Rect(25, 65, 100, 30);
         if (GUI.Button(new Rect(50, 65, 80, 30), "Yes"))
         {
-            this.hideAnotherRoundWindow = true;
+            this.showAnotherRoundWindow = true;
         }
         if (GUI.Button(new Rect(300, 65, 80, 30), "No"))
         {
-            this.hideAnotherRoundWindow = true;
+            this.showAnotherRoundWindow = true;
         }
     }
 
@@ -136,4 +156,3 @@ public class ManageWindows : MonoBehaviour
         }
     }
 }
-
