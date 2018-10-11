@@ -119,7 +119,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MainCarpet_001
-    second: {fileID: 2100000, guid: 0a72ba30599d59f40a8fe0d86d8fe4ce, type: 2}
+    second: {fileID: 2100000, guid: 8837c2f4c15129b499559270167d704c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -129,7 +129,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: unnamed
-    second: {fileID: 2100000, guid: 0a72ba30599d59f40a8fe0d86d8fe4ce, type: 2}
+    second: {fileID: 2100000, guid: 8837c2f4c15129b499559270167d704c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
